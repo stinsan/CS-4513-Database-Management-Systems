@@ -125,5 +125,5 @@ with a department with a budget of more than $95,000:
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/4-databases.png)
 
-## I am skipping Chapters 1.5 to 1.8 because I do not want to write notes about them.
+## I am skipping Chapters 1.5 to 1.9 because I want to.
 
