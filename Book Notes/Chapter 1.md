@@ -59,3 +59,17 @@ sets of attributes, such as XML or JSON
 - The object-based data model is an extension of the relational model with notions of encapsulation, methods, and object identity.
 
 ### Chapter 1.3.2: Relational Data Model
+An example of two tables in a relational data model:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/0-databases.png)
+
+### Chapter 1.3.3: Data Abstraction
+
+**The Three Levels of Abstraction**:
+1. **Physical Level**: *the lowest level of abstraction, describes complex low-level data structures in detail*
+2. **Logical Level**: *describes what data are stored in the database, and what relationships exist among those data*
+3. **View Level**: *the highest level of abstraction, application programs can hide details of data types, views can also hide information for security purposes*
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/1-databases.png)
+
+
