@@ -72,4 +72,56 @@ An example of two tables in a relational data model:
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/1-databases.png)
 
+### Chapter 1.3.4: Instances and Schemas
+**Instance**: *the collection of information stored in the database at a particular moment*
+
+**Schema**: *the overall design of a database, can have differing designs based on the levels of abstraction (physical and logical schemas), can also have several schemas at the view level that describe
+different views of the database (subschemas)*
+
+**Physical Data Independence**: *the ability to change the physical schema without changing the logical schema.*
+
+## Chapter 1.4 Database Languages
+**Data-Definition Language (DDL)**: *specifies the database schema*
+
+**Data-Manipulation Language (DML)**: *expresses database queries and updates*
+
+### Chapter 1.4.1: Data-Definition Language
+We specify the storage structure and access methods used by the database system
+by a set of statements in a special type of DDL called a **data storage and definition
+language**.
+
+Database systems also implements some integrity constraints:
+- **Domain Constraints**: *a domain of possible values must be associated with every
+attribute (for example, integer types, character types, date/time types)*
+- **Referential Integrity**: *ensures that a value that appears in one relation for 
+a given set of attributes also appears in a certain set of attributes in another relation*
+- **Authorization**: *differentiates users as far as the type of
+access they are permitted on various data values in the database*
+
+The output of the DDL is placed in the **data dictionary**, which contains **metadata** -- that is, data about data.
+
+### 1.4.2: The SQL Data-Definition Language 
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/2-databases.png)
+
+### 1.4.3: Data-Manipulation Language
+
+**Procedural DMLs**: *require a user to specify what data are needed and how to get
+those data*
+
+**Declarative DMLs (non-procedural DMLs)**: *require a user to specify what data are needed without specifying how to get those data
+
+A **query** is a statement requesting the retrieval of information. The portion of a
+DML that involves information retrieval is called a **query language**.
+
+### 1.4.4: The SQL Data-Manipulation Language
+
+Here is an example of an SQL query that finds the names of all instructors in the History department:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/3-databases.png)
+
+The following query finds the instructor ID and department name of all instructors associated
+with a department with a budget of more than $95,000:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/4-databases.png)
 
