@@ -68,3 +68,11 @@ relationship set.
 - e.g. a binary relationship is of degree 2, a ternary relationship is of degree 3, and so on
 - e.g. a binary relationship *teach* between two entity sets *instructor* and *class*
 - e.g. a ternary relationship *proj_guide* between *instructor*, *student*, and *project*.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-9.png)
+
+## 6.3 | Complex Attributes
+
+**Domain (value set)**: *a set of permitted values for each attribute*
+- e.g. An attribute *course_id* might have a domain of all text strings of a certain length.
+- e.g. An attribute *semester* might be strings from the set {Fall, Winter, Spring, Summer}.
