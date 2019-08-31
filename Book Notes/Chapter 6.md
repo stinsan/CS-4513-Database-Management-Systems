@@ -76,3 +76,22 @@ relationship set.
 **Domain (value set)**: *a set of permitted values for each attribute*
 - e.g. An attribute *course_id* might have a domain of all text strings of a certain length.
 - e.g. An attribute *semester* might be strings from the set {Fall, Winter, Spring, Summer}.
+
+**Simple and Composite Attributes**: *simple attributes cannot be divided into subparts, while composite attributes can*
+- e.g.  An attribute *name* could be structured as a composite attribute consisting of
+*first_name*, *middle_initial*, and *last_name*.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-10.png)
+
+**Single-Valued and Multivalued Attributes**: *single-valued attributes can only have one value, while multivalued attributes can have multiple values; multivalued attributes are denoted in an E-R diagram like so: {phone_numbers}*
+- e.g. An attribute *first_name* would be single-valued, while an attribute *phone_numbers* would be multivalued.
+
+**Derived Attributes**: *derived attributes can be derived from the values of other related attributes or entities; a derived attribute is denoted in an E-R diagram like so: age ( )*
+-  e.g. An attribute _age_ can be calculated from an attribute *date_of_birth* and the current date.
+
+An attribute takes a **null value** when an entity does not have a value for it. The null
+value may indicate “not applicable”.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-11.png)
+
+
