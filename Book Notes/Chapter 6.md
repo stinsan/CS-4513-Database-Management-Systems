@@ -94,4 +94,57 @@ value may indicate “not applicable”.
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-11.png)
 
+## 6.4 | Mapping Cardinalities
+
+**Mapping Cardinalities (Cardinality Ratios)**: *expresses the number of entities to which another entity can be associated via a relationship set*
+
+For a binary relationship set R between entity sets A and B, the mapping cardinality
+must be one of the following:
+
+1. **One-to-one**: *an entity in A is associated with at most one entity in B, and an entity in B is associated with at most one entity in A.*
+
+2. **One-to-many**: *an entity in A is associated with any number of entities in B; an entity in B, however, can be associated with at most one entity in A.*
+
+3. **Many-to-one**: *an entity in A is a sociated with at most one entity in B; an entity in B, however, can be associated with any number of entities in A.*
+
+4. **Many-to-many**: *an entity in A is associated with any number of entities in B; an entity in B is associated with any number of entities in A.*
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-12.png)
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-13.png)
+
+**Cardinalities on an E-R Diagram**:
+1. **One-to-one**: We draw a directed line from the relationship set to both entity sets. In the example below, the directed lines to *instructor* and _student_ indicates that and instructor may advse at most one student, and a student may have at most one advisor.
+
+2. **One-to-many**: We draw a directed line from the relationship set to the "one" side of the relationship. In the example below, there is a directed line from the relationship set _advisor_ to the entity set _instructor_, and an undirected line to tthe entity set _student_. This indicates that an instructor may advise many students, but a student may have at most one advisor.
+
+3. **Many-to-one**: We draw a directed line from the relationship set to the "one" side of the relationship. In the example below, there is an undirected line from the relationship set _advisor_ to the entity set _instructor_ and a directed line to the entity set _student_. This indicates that an instructor may advise at most one student, but a student may have many advisors.
+
+4. **Many-to-many**: We draw an undirected line from the relationship set to both entity sets. In the example below, there are undirected lines from the relationship set _advisor_ to both entity sets _instructor_ and _student_. This indicates that an instructor may advise many students, and a student may have many advisors.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-14.png)
+
+**Total and Partial Participation**: *The participation of an entity set E in a relationship set R is said to be total if every
+entity in E must participate in at least one relationship in R. If it is possible that some
+entities in E do not participate in relationships in R, the participation of entity set E in
+relationship R is said to be partial.*
+
+- e.g. For example, a university may require every student to have at least one advisor; 
+Therefore, the participation of student in the relationship set advisor is total. In contrast, an instructor need not advise any
+students, and the participation of instructor in the advisor relationship set is therefore partial.
+
+We indicate total participation of an entity in a relationship set using double lines.
+The figure below shows an example of the advisor relationship set where the double line
+indicates that a student must have an advisor.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-15.png)
+
+E-R diagrams also provide a way to indicate more complex constraints on the number of times each entity participates in relationships in a relationship set. A line may have an associated minimum and maximum cardinality, shown in the form _l..h_, where _l_ is the minimum and _h_ the maximum cardinality. A minimum value of 1 indicates total
+participation of the entity set in the relationship set; that is, each entity in the entity
+set occurs in at least one relationship in that relationship set. A maximum value of
+1 indicates that the entity participates in at most one relationship, while a maximum
+value ∗ indicates no limit.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-16.png)
+
 
