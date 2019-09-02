@@ -147,4 +147,6 @@ value ∗ indicates no limit.
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-16.png)
 
+## 6.5 | Primary Key
+### 6.5.1 | Entity Sets
 
