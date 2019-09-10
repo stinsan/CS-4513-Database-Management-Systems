@@ -167,3 +167,13 @@ the figure below, the weak entity set *section* depends on the strong entity set
 relationship set *sec_course*.
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-18.png)
+
+## 6.6 | Removing Redundant Attributes in Entity Sets
+I am skipping this section.
+
+## 6.7 | Reducing E-R Diagrams to Relational Schemas
+We skipped this section in lecture.
+
+## 6.8 |
+
+
