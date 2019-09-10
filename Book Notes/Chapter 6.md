@@ -149,4 +149,14 @@ value ∗ indicates no limit.
 
 ## 6.5 | Primary Key
 ### 6.5.1 | Entity Sets
+I am skipping this section.
 
+### 6.5.2 | Relationship Sets
+I am also skipping this section.
+
+### 6.5.3 | Weak Entity Sets
+A **weak entity set** is one whose existence is dependent on another entity set, called its **identifying entity set**;
+instead of associating a primary key with a weak entity, we use the primary key of the
+identifying entity, along with extra attributes, called **discriminator attributes** to uniquely
+identify a weak entity. An entity set that is not a weak entity set is termed a **strong entity
+set**.
