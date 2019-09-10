@@ -160,3 +160,10 @@ instead of associating a primary key with a weak entity, we use the primary key 
 identifying entity, along with extra attributes, called **discriminator attributes** to uniquely
 identify a weak entity. An entity set that is not a weak entity set is termed a **strong entity
 set**.
+
+In E-R diagrams, a weak entity set is depicted via a double rectangle with the discriminator being underlined with a dashed line. The relationship set connecting the
+weak entity set to the identifying strong entity set is depicted by a double diamond. In
+the figure below, the weak entity set *section* depends on the strong entity set *course* via the
+relationship set *sec_course*.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-18.png)
