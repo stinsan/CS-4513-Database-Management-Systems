@@ -192,3 +192,14 @@ single arrow*
 Essentially, **generalization** is the opposite of specialization. Specialization represents a top-down design process, while generalization represents a bottom-up design process.
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-19.png)
+
+### 6.8.3 | Inheritance
+
+The attributes and relationships of higher-leveled entities are **inherited** by the lower-leveled entities.
+
+### 6.8.4 | Constraints on Specializations
+
+**Total Specialization/Generalization**: *each higher-level entity must belong to a lower-level entity set*
+
+**Partial Specialization/Generalization**: *some higher-level entities may not belong
+to any lower-level entity set*
