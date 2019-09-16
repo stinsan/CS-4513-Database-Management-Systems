@@ -174,6 +174,21 @@ I am skipping this section.
 ## 6.7 | Reducing E-R Diagrams to Relational Schemas
 We skipped this section in lecture.
 
-## 6.8 |
+## 6.8 | Extended E-R Features
+### 6.8.1 | Specialization
 
+**Specialization**: *specialization is the process of designating subgroupings within an entity set*
 
+**Overlapping Specialization**: *the entity may belong to multiple specialized entity sets; this is shown on an ER diagram by using
+two arrows*
+- e.g. A _person_ can be both a _student_ and an _employee_.
+
+**Disjoint Specialization**: *the entity may belong to at most one specialized entity set; this is shown on an ER diagram by using a 
+single arrow*
+- e.g. An _employee_ can only have one job, either a _secretary_ or an _instructor_.
+
+### 6.8.2 | Generalization
+
+Essentially, **generalization** is the opposite of specialization. Specialization represents a top-down design process, while generalization represents a bottom-up design process.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-19.png)
