@@ -172,7 +172,103 @@ relationship set *sec_course*.
 I am skipping this section.
 
 ## 6.7 | Reducing E-R Diagrams to Relational Schemas
-We skipped this section in lecture.
+### 6.7.1 | Representation of Strong Entity Sets
+Let _E_ be a strong entity set with only simple descriptive attributes _a1, a2, ..., an_. We
+represent this entity with a schema called _E_ with _n_ distinct attributes. Take in account the
+entity 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_student(<ins>ID</ins>, name, tot_cred)_,
+
+since _ID_ is the primary key of the entity set, it is also the primary key
+of the relation schema.
+
+### 6.7.2 | Representation of Strong Entity Sets with Complex Attributes
+Take in account the _instructor_ entity in figure 6.8:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-11.png)
+
+For the composite attribute _name_, the schema generated for _instructor_ contains the attributes _first_name, middle_initial_, and _last_name_; there is no separate attribute or schema for
+_name_. Similarly, for the composite attribute _address_, the schema generated contains
+the attributes _street, city, state_, and _postal_code_. Since _street_ is a composite attribute it is
+replaced by _street_number, street_name_, and _apt_number_.
+
+Multivalued attributes are treated differently from other attributes; new relation
+schemas are created for these attributes.
+
+Derived attributes are not explicitly represented in the relational data model. However, they can be represented as stored procedures, functions, or methods in other data models.
+
+The relational schema derived from the version of entity set _instructor_ with complex
+attributes, without including the multivalued attribute, is thus:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_instructor (ID, first_name, middle_initial, last_name, </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;street_number, street_name, apt_number, </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;city, state, postal_code, date_of_birth)_.
+
+For a multivalued attribute _M_, we create a relation schema _R_ with an attribute _A_
+that corresponds to _M_ and attributes corresponding to the primary key of the entity
+set or relationship set of which _M_ is an attribute. Thus, the multivalued attribute _phone_number_
+from figure 6.8 becomes the relational schema 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_instructor_phone(<ins>ID</ins>, <ins>phone_number</ins>)_.
+
+Each phone number of an instructor is represented as a unique tuple in the relation on
+this schema. Thus, if we had an _instructor_ with _ID_ 22222, and phone numbers 555-1234
+and 555-4321, the relation _instructor_phone_ would have two tuples (22222, 555-1234)
+and (22222, 555-4321).
+
+### 6.7.3 | Representation of Weak Entity Sets
+Let _A_ be a weak entity set with attributes _a1, a2, ..., am_. Let _B_ be the strong entity set
+on which _A_ depends. Let the primary key of _B_ consist of attributes _b1, b2, ..., bn_. We
+represent the entity set _A_ by a relation schema called _A_ with one attribute for each
+member of the set:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_{a1, a2, ..., am} ∪ {b1, b2, ..., bn}_
+
+For schemas derived from a weak entity set, the combination of the primary key of
+the strong entity set and the discriminator of the weak entity set serves as the primary
+key of the schema. In addition to creating a primary key, we also create a foreign-key
+constraint on the relation _A_, specifying that the attributes _b1, b2, ..., bn_ reference the
+primary key of the relation _B_.
+
+As an illustration, consider the weak entity set _section_ in figure 6.15 becomes the relational schema
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_section(<ins>course_id</ins>, <ins>sec_id</ins>, <ins>semester</ins>, <ins>year</ins)_.
+  
+### 6.7.4 | Representation of Relationship Sets
+Let _R_ be a relationship set, let _a1, a2, ..., am_ be the set of attributes formed by the union
+of the primary keys of each of the entity sets participating in _R_, and let the descriptive
+attributes (if any) of _R_ be _b1, b2, ..., bn_. We represent this relationship set by a relation
+schema called _R_ with one attribute for each member of the set:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_{a1, a2, ..., am} ∪ {b1, b2, ..., bn}_.
+
+As an illustration, consider the relationship set advisor in the E-R diagram of Figure
+6.15. This relationship set involves the following entity sets:
+- _instructor_, with the primary key _ID_.
+- _student_, with the primary key _ID.
+
+Since the relationship set has no attributes, the _advisor_ schema has two attributes, the
+primary keys of _instructor_ and _student_. Since both attributes have the same name, we rename them _i_ID_ and _s_ID_. Since the advisor relationship set is many-to-one from _student_
+to _instructor_ the primary key for the advisor relation schema is _s_ID_.
+
+We also create foreign-key constraints on the relation schema _R_ as follows:</br> 
+For each entity set _Ei_ related by relationship set _R_, we create a foreign-key constraint from relation schema _R_, with the attributes of _R_ that were derived from primary-key attributes
+of _Ei_ referencing the primary key of the relation schema representing _Ei_.
+
+Returning to our earlier example, we thus create two foreign-key constraints on
+the _advisor_ relation, with attribute _i_ID_ referencing the primary key of _instructor_ and
+attribute _s_ID_ referencing the primary key of _student_.
+
+Applying the preceding techniques to the other relationship sets in the E-R diagram
+in figure 6.15, we get the relational schemas depicted in figure 6.17.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-20.png)
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-21.png)
+
+### 6.7.5 | Redundancy of Schemas
+
+In general, the schema for the relationship set linking a weak entity set to its corresponding strong entity set is redundant and does not need to be present in a relational database design based upon an E-R diagram.
 
 ## 6.8 | Extended E-R Features
 ### 6.8.1 | Specialization
