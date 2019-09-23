@@ -44,3 +44,27 @@ and _budget_, which is a number with 12 digits in total, two of which are after 
 The general form of the _create table_ command is:
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-32.png)
+
+where _r_ is the name of the relation, each _Ai_ is the name of an attribute in the schema of
+relation _r_, and _Di_ is the domain of attribute _Ai_.
+
+SQL supports a number of different integrity constraints. In this section, we discuss only a few of them:
+- **primary key**_(A1, A2, ..., An)_: The primary-key specifications says that attributes _A1, A2, ..., An_ form the primary key for the relation.
+- **foreign key**_(A1, A2, ..., An)_ **references** _s_: The foreign key specification saays the the values of attributes (_A1, A2, ..., An_) for any tuple in the relation must correspond to values of the primary key attributes of some tuple in relation _s_.
+- **not null**: The _not null_ constraint of an attribute specifies that the null value is not allowed for that attribute.
+
+Figure 3.1 shows the SQL data definition for part of the university database:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-33.png)
+
+There are also commands for manipulating existing tables:
+
+- **drop table** _r_: This command deletes all information about the dropped relation _r_ from the database, deleting all tuples of _r_ and the schema for _r_.
+
+- **delete from** _r_: This command retains relation _r_, but deletes all tuples in _r_.
+
+- **alter table** _r_ **add** _A D_: The _alter table_ command adds attributes to an existing relation, where _r_ is the name of an existing relation, _A_ is the name of the attribute to be added, and _D_ is the type of added attribute. All tuples in the relation are assigned _null_ as the value for the new attribute.
+
+- **alter table** _r_ **drop** _A_: This command drops attributes from a relation, where _r_ is the name of an existing relation, and A is the name of an attribute of the relation.
+
+## 3.3 | Basic Structure of SQL Queries
