@@ -42,4 +42,5 @@ of maximum length 20, _building_, which is a character string of maximum length 
 and _budget_, which is a number with 12 digits in total, two of which are after the decimal point. The create table command also specifies that the _dept_name_ attribute is the primary key of the _department_ relation.
 
 The general form of the _create table_ command is:
+
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-32.png)
