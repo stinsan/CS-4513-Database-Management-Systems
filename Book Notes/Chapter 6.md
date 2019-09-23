@@ -270,6 +270,41 @@ in figure 6.15, we get the relational schemas depicted in figure 6.17.
 
 In general, the schema for the relationship set linking a weak entity set to its corresponding strong entity set is redundant and does not need to be present in a relational database design based upon an E-R diagram.
 
+### 6.7.6 | Combination of Schemas
+
+Consider a many-to-one relationship set _AB_ from entity set _A_ to entity set _B_. Using our
+relational-schema construction algorithm outlined previously, we get three schemas: _A_,
+_B_, and _AB_. Suppose further that the participation of _A_ in the relationship is total; that
+is, every entity _a_ in the entity set _A_ must participate in the relationship _AB_. Then we
+can combine the schemas _A_ and _AB_ to form a single schema consisting of the union of
+attributes of both schemas. The primary key of the combined schema is the primary
+key of the entity set into whose schema the relationship set schema was merged.
+
+To illustrate, let’s examine the various relations in the E-R diagram of figure 6.15
+that satisfy the preceding criteria:
+
+- _inst_dept_. The schemas _instructor_ and _department_ correspond to the entity sets _A_
+and _B_, respectively. Thus, the schema _inst_dept_ can be combined with the _instructor_
+schema. The resulting instructor schema consists of the attributes _{ID, name, dept_name, salary}_.
+
+- _stud_dept_. The schemas _student_ and _department_ correspond to the entity sets _A_
+and _B_, respectively. Thus, the schema _stud_dept_ can be combined with the _student_
+schema. The resulting _student_ schema consists of the attributes _{ID, name, dept_name, tot_cred}_.
+
+- _course_dept_. The schemas _course_ and _department_ correspond to the entity sets _A_
+and _B_, respectively. Thus, the schema _course_dept_ can be combined with the _course_
+schema. The resulting _course_ schema consists of the attributes _{course_id, title, dept_name, credits}_.
+
+- _sec_class_. The schemas _section_ and _classroom_ correspond to the entity sets _A_ and _B_,
+respectively. Thus, the schema _sec_class_ can be combined with the _section_ schema.
+The resulting _section_ schema consists of the attributes _{course_id, sec_id, semester,
+year, building, room_number}_.
+
+- _sec_time_slot_. The schemas _section_ and _time_slot_ correspond to the entity sets _A_ and
+_B_, respectively. Thus, the schema _sec_time_slot_ can be combined with the _section_ 
+schema obtained in the previous step. The resulting _section_ schema consists of the
+attributes _{course_id, sec_id, semester, year, building, room_number, time_slot_id}_.
+
 ## 6.8 | Extended E-R Features
 ### 6.8.1 | Specialization
 
@@ -299,3 +334,48 @@ The attributes and relationships of higher-leveled entities are **inherited** by
 
 **Partial Specialization/Generalization**: *some higher-level entities may not belong
 to any lower-level entity set*
+
+### 6.8.5 | Aggregation
+
+**Aggregation**: _an abstraction through which relationships are treated as higher level entities_
+
+Thus, for our example, we regard the relationship set _proj_guide_ (relating
+the entity sets _instructor_, _student_, and _project_) as a higher-level entity set called _proj_guide_. 
+Such an entity set is treated in the same manner as is any other entity set. We
+can then create a binary relationship _eval_for_ between _proj_guide_ and _evaluation_ to represent which _(student, project, instructor)_ combination an _evaluation_ is for. Figure 6.20
+shows a notation for aggregation commonly used to represent this situation:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-22.png)
+
+### 6.8.6 | Reduction to Relation Schemas
+
+#### 6.8.6.1 | Representation of Generalization
+
+Create a schema for the higher-level entity set. For each lower-level entity set,
+create a schema that includes an attribute for each of the attributes of that entity
+set plus one for each attribute of the primary key of the higher-level entity set.
+
+Thus, for the E-R diagram of Figure 6.18 (ignoring the _instructor_ and _secretary_
+entity sets) we have three schemas:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_person (<ins>ID</ins>, name, street, city)_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_employee (<ins>ID</ins>, salary)_<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_student (<ins>ID</ins>, tot cred)_
+
+The primary-key attributes of the higher-level entity set become primary-key attributes of the higher-level entity set as well as all lower-level entity sets. These can be seen underlined in the preceding example.
+In addition, we create foreign-key constraints on the lower-level entity sets,
+with their primary-key attributes referencing the primary key of the relation created from the higher-level entity set. In the preceding example, the _ID_ attribute
+of employee would reference the primary key of _person_, and similarly for _student_.
+
+#### 6.8.6.2 | Representation of Aggregation
+
+Consider Figure 6.20. The schema for the relationship set _eval_for_ between the aggregation
+of _proj_guide_ and the entity set _evaluation_ includes an attribute for each attribute in
+the primary keys of the entity set _evaluation_ and the relationship set _proj_guide_. It also
+includes an attribute for any descriptive attributes, if they exist, of the relationship set
+_eval_for_. 
+
+The rules we saw earlier for creating primary-key and foreign-key constraints on
+relationship sets can be applied to relationship sets involving aggregations as well, with
+the aggregation treated like any other entity set. The primary key of the aggregation
+is the primary key of its defining relationship set.
