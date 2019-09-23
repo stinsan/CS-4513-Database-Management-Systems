@@ -93,7 +93,7 @@ _time_slot_id_ attribute of the _time_slot_ relation. Such a requirement is an e
 _time_slot_ does not form a primary key of the _time_slot_ relation, although it is a part of the primary key; thus, we cannot use a
 foreign-key constraint to enforce the above constraint.
 
-### 2.4 | Schema Diagrams
+## 2.4 | Schema Diagrams
 
 **Schema Diagram**: a visual depiction of a database schema, along with primary keys and foreign-key constraints.
 
@@ -103,4 +103,6 @@ relation to the primary key of the referenced relation. We use a two-headed arro
 referential integrity constraint that is not a foreign-key constraint. 
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-30.png)
+
+### Sections 2.5 - 2.7 were not covered in lecture.
 
