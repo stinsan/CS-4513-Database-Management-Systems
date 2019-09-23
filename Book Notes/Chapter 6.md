@@ -379,3 +379,5 @@ The rules we saw earlier for creating primary-key and foreign-key constraints on
 relationship sets can be applied to relationship sets involving aggregations as well, with
 the aggregation treated like any other entity set. The primary key of the aggregation
 is the primary key of its defining relationship set.
+
+## Sections 6.9 - 6.12 were not covered in class.
