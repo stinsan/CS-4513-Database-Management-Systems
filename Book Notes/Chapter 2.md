@@ -69,6 +69,38 @@ The relation schema to describe this association is: <br/>
 **Candidate Key**: a superkey for which no proper subset is a superkey itself; a "minimal superkey"; there can be multiple candidate keys per relation.
 - The combination of _ID_ and _name_ is a superkey for the relation _instructor_. However, _name_ is an extraneous attribute. Thus, only the attribute _ID_ is considered a candidate key.
 
-**Primary Key**: a candidate key that is chosen by the database designer as the principal means of identifying tuples within a relation.
+**Primary Key**: a candidate key that is chosen by the database designer as the principal means of identifying tuples within a relation; primary keys are underlined in a relation schema.
+- Consider a _classroom_ relation _classroom (<ins>building</ins>, <ins>room_number</ins>, capacity)_. Here the primary key consists of two attributes, _building_ and _room_number_. Neither attribute by itself can uniquely identify a classroom, although together they uniquely identify a classroom.
 
+**Foreign-Key Constraint**: given an attribute(s) _A_ of relation _r1_ and a primary-key _B_ of
+relation _r2_, the value of _A_ for each tuple in _r1_ must also be the value of _B_ for some tuple in _r2_.
+
+**Foreign-Key**: from the above definition, the attribute set _A_ is a foreign-key from _r1_ referencing _r2_.
+
+**Referencing Relation**: from the above definition, the relation _r1_ is called the referencing relation of the foreign-key constraint.
+
+**Referenced Relation**: from the above definition, the relation _r2_ is called the referenced relation of the foreign-key constraint.-
+
+- The attribute _dept_name_ in _instructor_ is a foreign-key from _instructor_, referencing _department_.
+- The attributes _building_ and _room_number_ of the _section_ relation together form a foreign key referencing the _classroom_ relation.
+
+**Referential Integrity Constraint**: requires that the values appearing in specified attributes of any tuple in the referencing
+relation also appear in specified attributes of at least one tuple in the referenced relation; relaxes the requirement that the
+referenced attributes form the primary key of the referenced relation.
+
+- Consider the values in the _time_slot_id_ attribute of the _section_ relation. We require that these values must exist in the
+_time_slot_id_ attribute of the _time_slot_ relation. Such a requirement is an example of a referential integrity constraint. Note that
+_time_slot_ does not form a primary key of the _time_slot_ relation, although it is a part of the primary key; thus, we cannot use a
+foreign-key constraint to enforce the above constraint.
+
+### 2.4 | Schema Diagrams
+
+**Schema Diagram**: a visual depiction of a database schema, along with primary keys and foreign-key constraints.
+
+Each relation appears as a box, with the relation name at the top in blue and the attributes listed inside the box.
+Primary-key attributes are shown underlined. Foreign-key constraints appear as arrows from the foreign-key attributes of the referencing
+relation to the primary key of the referenced relation. We use a two-headed arrow, instead of a single-headed arrow, to indicate a
+referential integrity constraint that is not a foreign-key constraint. 
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-30.png)
 
