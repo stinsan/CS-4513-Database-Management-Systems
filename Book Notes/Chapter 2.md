@@ -104,5 +104,5 @@ referential integrity constraint that is not a foreign-key constraint.
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-30.png)
 
-### Sections 2.5 - 2.7 were not covered in lecture.
+### Sections 2.5 - 2.7 were not covered in lecture, therefore I am not doing them.
 
