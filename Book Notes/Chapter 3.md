@@ -68,3 +68,45 @@ There are also commands for manipulating existing tables:
 - **alter table** _r_ **drop** _A_: This command drops attributes from a relation, where _r_ is the name of an existing relation, and A is the name of an attribute of the relation.
 
 ## 3.3 | Basic Structure of SQL Queries
+
+The basic structure of an SQL query consists of three clauses: **select**, **from**, and **where**.
+
+### Queries on a Single Relation:
+
+Consider the simple query, "Find the names of all instructors." 
+
+Instructor names are found in the _instructor_ relation, so we put that in the from clause. The instructor's name appears under the _name_ attribute, so we put that in the select clause. The query looks like this:
+
+**select** _name_<br/>
+**from** _instructor_;
+
+The resulting table looks like:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-35.png)
+
+Now, consider the query, "Find the department names of all instructors." The SQL query looks like this:
+
+**select** _dept_name_ <br/>
+**from** _instructor_;
+
+The resulting table looks like:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-36.png)
+
+Note how there re duplicate department names. If we want to force the elimination of duplicates, we insert the keyword **distinct** after the select clause:
+
+**select distinct** _dept_name_<br/>
+**from** _instructor_;
+
+The select-clause can also take arithmetic operations such as +, -, *, and /. Take, for example, the query:
+
+**select** _ID, name, dept_name, salary * 1.1_<br/>
+**from** _instructor_;
+
+This query returns a relation that is the same as the _instructor_ relation, except that the _salary_ attribute is multiplied by 1.1. This shows what would result if we gave a 10% raise to each instructor, but does not actually result in any change to the _instructor_ relation.
+
+The where clause allows us to select rows from a relation that satisfy a specified predicate. Consider the query, "Find the names of all instructors in the Computer Science department who have a salary greater than $70,000." This can be written in SQL as:
+
+**select** _name_<br/>
+**from** _instructor_<br/>
+**where** _dept_name = 'Comp. Sci.' and salary > 70000;_
