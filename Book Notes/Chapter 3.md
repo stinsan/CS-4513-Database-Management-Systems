@@ -139,7 +139,7 @@ The from clause acts as a Cartesian product of the relations listed in the claus
 Take, for example, the query:
 
 **select** *<br/>
-**from** _instructor, teaches_
+**from** _instructor, teaches_;
 
 This outputs a relation that is a combination every tuple in _instructor_ and every tuple in _teaches_ even if they are unrelated to one another, which is not useful. The table below shows the result:
 
@@ -150,4 +150,146 @@ The where clause combined with the Cartesian product from the from clause produc
 The following query matches _teaches_ tuples with _instructor_ tuples that have the same _ID_ value. That is, it returns a table that
 matches an instructor with all the classes he/she teaches:
 
+**select** _name, course_id_<br/>
+**from** _instructor, teaches_<br/>
+**where** _instructor.ID = teaches_ID_;
+
+This query produces:
+
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-40.png)
+
+If we wished to find only instructor names and course identifiers for instructors
+in the Computer Science department, we could add an extra predicate to the where
+clause, as shown below:
+
+**select** _name, course_id_<br/>
+**from** _instructor, teaches_<br/>
+**where** _instructor.ID = teaches_ID and instructor.dept_name = 'Comp. Sci.';_
+
+## 3.4 | Additional Basic Operations
+
+### The Rename Operation
+The **as** clause provides a way of renaming attributes of a relation in an SQL query. There are three reasons as to why we would want to do this:
+1. Two or more relations in the from clause may have the same attribute name, resulting in a duplicate attribute in the output table.
+2. If an arithmetic expression is used in the select clause, the resultant attribute is nameless.
+3. We may just want to change the attribute name in the resulting table. Ya know, for kicks.
+
+The as clause takes the form of
+
+_old-name_ **as** _new-name_,
+
+and can appear in both select and from clauses.
+
+Take, for example, the previously mentioned query:
+
+**select** _name, course_id_<br/>
+**from** _instructor, teaches_<br/>
+**where** _instructor.ID = teaches_ID_;
+
+If we wanted to replace attribute _name_ to _instructor_name_ in order to be clearer to which name, the instructor's or the course's, we are referring to, we would use the following query:
+
+**select** _name_ **as** _instructor_name, course_id_<br/>
+**from** _instructor, teaches_<br/>
+**where** _instructor.ID = teaches_ID_;
+
+We can also use an as clause to replace a long relation name with a shorter one for convenience:
+
+**select** _T.name, S.course_id_ <br/>
+**from** _instructor_ **as** _T, teaches_ **as** _S_<br/>
+**where** _T.ID = S.ID_;
+
+Another reason to rename a relation is a case where we wish to compare tuples
+in the same relation. Suppose that we want to write the query “Find the names of all instructors whose
+salary is greater than at least one instructor in the Biology department.” We can write
+the SQL expression:
+
+**select distinct** _T.name_<br/>
+**from** _instructor_ **as** _T_, _instructor_ **as** _S_<br/>
+**where** _T.salary > S.salary_ **and** _S.dept_name = 'Biology';_
+
+### String Operations
+This was not covered in lecture.
+
+### Attribute Specification in the Select Clause
+The asterisk symbol can be used in a select clause to represent "all attributes." The following query selects all attributes in the _instructor_ relation:
+
+**select** _instructor.*_<br/>
+**from** _instructor, teaches_<br/>
+**where** _instructor.ID = teaches_ID;_
+
+### Ordering of the Display of Tuples
+The **order by** clause causes the tuples in the result of a query to appear in sorted
+order.
+
+To list in alphabetic order all instructors in the Physics department, we write:
+
+**select** _name_<br/>
+**from** _instructor_<br/>
+**where** _dept_name = 'Physics'_<br/>
+**order by** _name;_
+
+By default, the order by clause lists items in ascending order. To specify the sort order,
+we may specify **desc** for descending order or **asc** for ascending order.
+
+Furthermore,
+ordering can be performed on multiple attributes. Suppose that we wish to list the
+entire instructor relation in descending order of salary. If several instructors have the
+same salary, we order them in ascending order by name. We express this query in SQL
+as follows:
+
+**select** *<br/>
+**from** _instructor_<br/>
+**order by** _salary_ **desc**_, name_ **asc**_;_
+
+### Where-Clause Predicates
+There also exists **between** and **not between** comparison clauses to help simplify queries.
+
+Take the following query for example:
+
+**select** _name_<br/>
+**from** _instructor_<br/>
+**where** _salary <= 100000_ **and** _salary >= 90000;_
+
+This can be simplified to:
+
+**select** _name_<br/>
+**from** _instructor_<br/
+**where** _salary_ **between** 90000 **and** 100000;_
+
+Row constructor notation can also be used in comparison operators. For example, _(a1, a2) <= (b1, b2)_ is true if _a1 <= b1_ and _a2 <= b2_.
+
+Take for example the following query:
+
+**select** _name, course_id_<br/>
+**from** _instructor, teaches_<br/>
+**where** _instructor.ID = teaches.ID_ **and** _dept_name = 'Biology';_
+
+This query can be simplified by using row constructor notation as follows:
+
+**select** _name, course_id_<br/>
+**from** _instructor, teaches_<br/>
+**where** _(instructor, dept_name) = (teaches.ID, 'Biology');_ 
+
+## 3.5 | Set Operations
+The SQL operations **union**, **intersect**, and **except** operate on relations and correspond to
+the mathematical set operations ∪, ∩, and −. 
+
+For the examples in this section, two relations will be used:
+- The set of courses taught in the Fall 2017 semester, which will be named _c1_:
+
+**select** _course_id_<br/>
+**from** _section_<br/>
+**where** _semester = 'Fall'_ **and** _year = 2017;_
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-41.png)
+
+- The set of courses taught in the Spring 2018 semester, which will be named _c2_:
+
+**select** _course_id_<br/>
+**from** _section_<br/>
+**where** _semester = 'Spring'_ **and** _year = 2018;_
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-42.png)
+
+
+
