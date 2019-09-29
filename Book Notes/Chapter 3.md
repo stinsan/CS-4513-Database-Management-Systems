@@ -110,3 +110,44 @@ The where clause allows us to select rows from a relation that satisfy a specifi
 **select** _name_<br/>
 **from** _instructor_<br/>
 **where** _dept_name = 'Comp. Sci.' and salary > 70000;_
+
+The result:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-37.png)
+
+Logical connectives such as _and, or,_ and _not_ can be used in the where clause. The operands of the logical connectives can also involve comparison operators such as _<, <=, >, >=, =,_ and _<>_.
+
+### Queries on Multiple Relations
+Suppose we want to answer the query, "Retrieve the name of all instructors, along with their department names and department building name."
+
+Looking at the _instructor_ relation, the department name is under the attribute _dept_name_, but the building name is present under the _building_ attribute of the _department_ relation. To answer the query, each
+tuple in the _instructor_ relation must be matched with the tuple in the _department_ relation
+whose _dept_name_ value matches the _dept_name_ value of the _instructor_ tuple:
+
+**select** _name, instructor.dept_name, building_<br/>
+**from** _instructor, department_<br/>
+**where** _instructor.dept_name = department.dept_name;_
+
+Note that the attribute _dept_name_ occurs in both the relations _instructor_ and _department_, and the relation name is used as a prefix (in _instructor.dept_name_, and _department.dept_name_) to make clear to which attribute we are referring.
+
+The result of the query:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-38.png)
+
+The from clause acts as a Cartesian product of the relations listed in the clause.
+
+Take, for example, the query:
+
+**select** *<br/>
+**from** _instructor, teaches_
+
+This outputs a relation that is a combination every tuple in _instructor_ and every tuple in _teaches_ even if they are unrelated to one another, which is not useful. The table below shows the result:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-39.png)
+
+The where clause combined with the Cartesian product from the from clause produces a more useful result, though.
+
+The following query matches _teaches_ tuples with _instructor_ tuples that have the same _ID_ value. That is, it returns a table that
+matches an instructor with all the classes he/she teaches:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-40.png)
