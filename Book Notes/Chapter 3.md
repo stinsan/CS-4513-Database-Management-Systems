@@ -291,5 +291,39 @@ For the examples in this section, two relations will be used:
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-42.png)
 
+### The Union Operation
+To find the set of all courses taught either in Fall 2017 or in Spring 2018, or both, we must take the union of _c1_ and _c2_,
+which is written as:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-43.png)
+
+The union operation eliminates duplicates, so the resulting relation is:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-44.png)
+
+If duplicates are desired, the operation **union all** should be used instead.
+
+### The Intersect Operation
+To find the set of all courses taught in both the Fall 2017 and Spring 2018, we must find the intersection of _c1_ and _c2_, which is written as:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-45.png)
+
+The intersection operation also eliminates duplicates, so the resulting relation is:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-46.png)
+
+If duplicates are desired, the operation **intersect all** should be used instead.
+
+### The Except Operation
+To find all courses taught in the Fall 2017 semester but not in the Spring 2018 semester we must find _c1_ except _c2_, which is written as:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-47.png)
+
+The except operation also eliminates duplicates, so the resulting relation is:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-48.png)
+
+If duplicates are desired, the operation **except all** should be used instead.
+
 
 
