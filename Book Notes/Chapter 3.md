@@ -325,5 +325,13 @@ The except operation also eliminates duplicates, so the resulting relation is:
 
 If duplicates are desired, the operation **except all** should be used instead.
 
+## 3.6 | Null Values
+
+An arithmetic operation involving a null value results in null as well. For example, if _r.A_ is null, then _r.A + 5_ is also null.
+
+Comparison operations involving a null value results in **unknown**, which provides a third logical value in addition to true and false.
+Since predicates in a where clause can involve boolean operators such as and, or, and not on the results of the comparison operations, the definitions of the boolean operations are extended to deal with the third value, unknown.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-50.png)
 
 
