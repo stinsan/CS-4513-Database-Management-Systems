@@ -334,4 +334,18 @@ Since predicates in a where clause can involve boolean operators such as and, or
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-50.png)
 
+SQL uses the special keyword **is null** or **is not null** in a predicate to test for a null value. Thus, to
+find all instructors who appear in the instructor relation with null values for salary, we
+write:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-51.png)
+
+SQL allows us to test whether the result of a comparison is unknown, rather than
+true or false, by using the clauses **is unknown** and **is not unknown**. For example:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-52.png)
+
+## 3.7 | Aggregate Functions
+
+
 
