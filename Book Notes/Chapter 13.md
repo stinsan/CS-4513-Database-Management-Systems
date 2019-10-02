@@ -36,6 +36,15 @@ the deleted record has been moved. This solution is shown in Figure 13.2.
 2. Move the last record of the file into the space formerly occupied by the deleted record. This solution is shown in Figure 13.3.
 3. The usage of a file header.
 
+Since solutions 1 and 2 require multiple block accesses, solution 3 is the most appealing.
+
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-66.png)
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-67.png)
+
+Since insertions tend to be more
+frequent than deletions, it is acceptable to leave open the space occupied by the deleted
+record and to wait for a subsequent insertion before reusing the space. To keep track of open spaces, we use an additional structure a file, which is often allocated a certain number of bytes at the beginning of a file.
+A **file header**
+
+
