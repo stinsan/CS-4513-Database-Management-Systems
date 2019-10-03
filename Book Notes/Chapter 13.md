@@ -88,3 +88,31 @@ The records themselves are stored contiguously starting from the end of the bloc
 The slotted-page structure requires that there be no pointers that point directly to
 records. Instead, pointers must point to the entry in the header that contains the actual
 location of the record.
+
+## 13.3 | Organization of Records in Files
+- Heap file organization: Any record can be placed anywhere in the file where there is free space. There is no ordering of records, typically having a single file or set of files for each relation.
+
+- Sequential file organization: Records are stored in sequential order according to the value of a "search key" of each record.
+
+### Heap File Organization
+In a **heap file organization**, a record may be stored anywhere in the file corresponding to a relation. New records are inserted at the end of a file. It is efficient in insertion because no sorting is involved, but it is slow when reading because of linear search.
+
+### Sequential File Organization
+A **sequential file** is designed for efficient processing of records in sorted order base on some search key.
+
+A **search key** is any attribute or set of attributes; it does not need to be a primary key or even a super key.
+
+Records are chained together in sequential order by pointers, but records are also physically stored in search-key order to minimize the number of block accesses.
+
+Figure 13.7 is a sequential file of _instructor_ records using _ID_ as the search key.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-71.png)
+
+Deletions are managed using pointer chains as discussed previously.
+
+Insertions, on the other hand, are much trickier. There are two rules when inserting into a sequential file:
+1. Locate the record in the file that comes before the record to be inserted in search key order.
+2. If there is a free record within the same block as this record, insert the new record there. Otherwise, insert the new record in
+an overflow block. Then adjust the points so as to chain together the records in search-key order.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-72.png)
