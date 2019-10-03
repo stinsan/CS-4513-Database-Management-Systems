@@ -116,3 +116,7 @@ Insertions, on the other hand, are much trickier. There are two rules when inser
 an overflow block. Then adjust the points so as to chain together the records in search-key order.
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-72.png)
+
+Over a period of time, the correspondence between search-key order and physical order may be lost. In such a case, a file should be **reorganized** so that the physical order is regained. Reorganizations are costly and take a lot of time.
+
+## The rest of Chapter 13 was not covered in lecture.
