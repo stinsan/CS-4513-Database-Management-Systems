@@ -56,8 +56,8 @@ first record, since, because the index is a clustering one, records are sorted o
 same search key. In a dense nonclustering index, the index must store a list of pointers to all
 records with the same search-key value.
 
-
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-74.png)
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-76.png)
 
 - **Sparse index**: In a sparse index, an index entry appears for only some of the searchkey values. Sparse indices can be used only if the relation is stored in sorted order of the search key; that is, if the index is a clustering index. As is true in dense
 indices, each index entry contains a search-key value and a pointer to the first data
@@ -68,5 +68,6 @@ follow the pointers in the file until we find the desired record.
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-75.png)
 
+### Multilevel Indices
 
-
+There is an issue with dense indices in that if the primary index does not fit into main memory, access becomes expensive.
