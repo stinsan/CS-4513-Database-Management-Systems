@@ -103,3 +103,48 @@ records with the same search-key value could be anywhere in the file, since the 
 are ordered by the search key of the clustering index, rather than by the search key
 of the secondary index. Therefore, a secondary index must contain pointers to all the
 records.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-78.png)
+
+### Indices on Multiple Keys
+We skipped this section in lecture.
+
+## 14.3 | B+-Tree Index Files
+As the size of index-sequential files grow, their performance degrades. This can usually be solved through the reorganization of the file, but frequent reorganizations are undesirable.
+
+The **B+-tree index** structure is the most widely used of several index structures that
+maintain their efficiency despite insertion and deletion of data. A B+-tree index takes
+the form of a **balanced tree** in which every path from the root of the tree to a leaf of
+the tree is of the same length.
+
+We shall see that the B+-tree structure imposes performance overhead on insertion
+and deletion and adds space overhead.
+
+### Structure of a B+-Tree
+A B+-tree index is a multilevel index, but it has a structure that differs from that of the
+multilevel index-sequential file.
+
+A B+-tree contains up to _n - 1_ seach-key values _K<sub>1</sub>, K<sub>2</sub>, ..., K<sub>n-1</sub>_, and _n_ pointers
+  _P<sub>1</sub>, P<sub>2</sub>, ..., P<sub>n</sub>_ . The search-key values within a node are kept in sorted order; thus if _i < j_,
+then K<sub>i</sub> < K<sub>j</sub>.
+                                                                                                                                     
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-79.png)
+
+The structure of the **leaf nodes** of a B+-tree is as follows: <br/>
+- For _i_ = 1, 2, ..., _n - 1_, pointer _P<sub>i</sub>_ points to a file record with search-key _K<sub>i</sub>_. 
+Note how the final pointer, _P<sub>n</sub>_ is not included; this pointer plays a special purpose that will be discussed later.
+
+- Each leaf can hold a maximum of _n - 1_ value and a minimum of _ciel((n - 1) / 2)_ values.
+
+- If _L<sub>i</sub>_ and _L<sub>j</sub>_ are leaf nodes and i < j (that is, _L<sub>i</sub>_ is to the left of _L<sub>j</sub>_ in the tree), then every search-key value _v<sub>i</sub>_ in _L<sub>i</sub>_ is less than every search-key value _v<sub>j</sub>_ in _L<sub>j</sub>_.
+
+- B+-trees are often used as a dense index. Thus, every search-key value must appear in some leaf node.
+
+- The final pointer in a leaf node, _P<sub>n</sub>_ is used to chain together the leaf nodes in search-key order since there is a linear order on the leaves based on the search-key values.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-80.png)
+
+The **nonleaf nodes** of the B+-tree for a multilevel, sparse index on the leaf nodes.
+The structure of nonleaf nodes is the same as leaf nodes, except that all pointers point to other nodes. A nonleaf node holds up to _n_ pointers and must hold at least _ceil(n / 2)_ pointers.
+
+
