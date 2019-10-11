@@ -119,4 +119,27 @@ an overflow block. Then adjust the points so as to chain together the records in
 
 Over a period of time, the correspondence between search-key order and physical order may be lost. In such a case, a file should be **reorganized** so that the physical order is regained. Reorganizations are costly and take a lot of time.
 
+### Multitable Clustering File Organization
+Most relational databases store each relation in seperate files. Thus, each file, and as a result, each block, stores record of only one relation.
+
+However, it can be useful to store records of more than one relation in a single block. Take, for example, the following SQL query:
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-92.png)
+
+This query computes a join of the _department_ and _instructor_ relations. Thus, for each tuple of _department_, the system must locate the _instructor_ tuples with the same value for _dept_name_. These records must be transferred from disk to main memory. In the worst case, each record resides on a different block, which makes us do one block read per record required by the query.
+
+As a concrete example, consider the _department_ and _instructor_ relations of Figure 13.9 and 13.10, respectively.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-93.png)
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-94.png)
+
+Figure 13.11 shows a file structure designed for the efficient execution of queries involving the natural join of _department_ and _instructor_. All the _instructor_ tuples for a particular _dept_name_ are stored near the _department_ tuple for that _dept_name_. We say that the two relations are clustered on the key _dept_name_.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-95.png)
+
+A **multitable clustering file organization** is a file organization, like the one depicted in Figure 13.11, that stores related records of two or more relation in each block.
+
+The **cluster key** is the attributes that define which records are stored together. In Figure 13.11, the cluster key is _dept_name_.
+
 ## The rest of Chapter 13 was not covered in lecture.
