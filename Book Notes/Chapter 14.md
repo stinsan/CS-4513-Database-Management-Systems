@@ -241,3 +241,8 @@ The following are an example of a few consecutive deletions starting from the B+
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-89.png)
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-90.png)
+
+## 14.4 | B+-Tree Extentions
+This section was not covered in lecture.
+
+## 14.5 | Hash Indices
