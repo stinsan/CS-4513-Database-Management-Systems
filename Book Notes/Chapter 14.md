@@ -205,4 +205,20 @@ All entries in the leaf node that are to the right of the deleted entry are shif
 by one position, so that there are no gaps in the entries after the entry is deleted.
 
 #### Insertion
-Consider an example where we a record is inserted in the _instructor_ relation with the _name_ value being Adams. An entry for "Adams" would then need to be inserted into the B+-tree of Figure 14.9. By using the _find()_ procedure, we can see that "Adams" should be inserted in the leaf node containing "Brandt", "Califieri", and "Crick". However, there is no room in this node for the insertion. Thus, the node must be split. In general, we take the _n_ search-key values (the _n − 1_ values in the leaf node plus the value being inserted), and put the first _⌈n ∕ 2⌉_ in the existing node and the remaining values in a newly created node.
+Consider an example where we a record is inserted in the _instructor_ relation with the _name_ value being Adams. An entry for "Adams" would then need to be inserted into the B+-tree of Figure 14.9. By using the _find()_ procedure, we can see that "Adams" should be inserted in the leaf node containing "Brandt", "Califieri", and "Crick". However, there is no room in this node for the insertion. Thus, the node must be split. 
+
+In general, we take the _n_ search-key values (the _n − 1_ values in the leaf node plus the value being inserted), and put the first _⌈n ∕ 2⌉_ in the existing node and the remaining values in a newly created node. 
+
+For this example, the search-key values "Adams" and "Brandt" are in one leaf, and "Califieri" and "Crick" are in the other. Figure 14.13 shows this node split.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-85.png)
+
+Next, we must insert the new leaf node into the B+-tree. The new node has "Califieri" as its smallest search-key value. We must insert an entry with the search-key value, and a pointer to the new node, into the parent of leaf node that was split. Figure 14.14 shows the result of this insertion.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-86.png)
+
+In the previous example, only the leaf node was split. Let's see an example where nonleaf nodes must also be split. Figure
+14.15 shows the result of inserting a record with search key “Lamport” into the tree
+shown in Figure 14.14.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-87.png)
