@@ -272,3 +272,23 @@ With overflow chaining, given a search-key _k_, the lookup algorithm must check 
 Hash indices with a fixed number of buckets is called **static hashing**. One of the problems with this is that we need to know how many records are being stored in the index. If a large number of records are added, resulting in far more records than buckets, lookups would have to search through a large number of records stored in a single bucket and would be inefficient.
 
 To combat the problem that comes with static hashing, the hash index can be rebuilt with an increased number of buckets. This is called **dynamic hashing**.
+
+## 14.7 | Creation of Indices
+
+Indices can be created using the following syntax:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **create index** \<index-name\> **on** \<relation-name\> (\<attribute-list\>);
+
+The _attribute-list_ is the list of attributes of the relations that form the search key for the index.
+
+Indices can be dropped by using a command of the form:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **drop index** \<index-name\>;
+
+For example, to define an index name _dept_index_ on the _instructor_ relation with _dept_name_ as the search key, we write:
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **create index** _dept_index_ **on** _instructor_ (_dept_name_);
+
+To declare that an attribute or list of attributes is a candidate key, we can use the
+syntax **create unique index** in place of **create index** above.
+
