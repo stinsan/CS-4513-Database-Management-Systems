@@ -160,6 +160,7 @@ Figure 14.10 shows a B+-tree for the _instructor_ file with _n = 6_, note how th
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-82.png)
 
 ### Queries on B<sup>+</sup>-Trees
+#### Finding a Single Record
 Suppose that we wish to find a record with a given value _v_ for the search key. Figure 14.11 presents pseudocode for a
 function _find(v)_ to carry out this task, assuming there are no duplicates.
 
@@ -174,6 +175,7 @@ If no such value _K<sub>i</sub>_ is found, then _v > K<sub>m−1</sub>_, where _
 node. In this case the current node is set to that pointed to by _P<sub>m</sub>_. The above procedure
 is repeated, traversing down the tree until a leaf node is reached.
 
+#### Finding a Range of Records
 B+-trees can also be used to find all records with search key values in a specified
 range [_lb, ub_], such queries are called **range queries**.
 To execute such queries, we can create a procedure _findRange (lb, ub)_, shown in
@@ -186,3 +188,21 @@ similar to _find(lb)_; the leaf may or may not actually contain value _lb_. It t
 through records in that and subsequent leaf nodes collecting pointers to all records
 with key values _C.K<sub>i</sub>_ such that _lb ≤ C.K<sub>i</sub> ≤ ub_ into a set _resultSet_. The function stops when
 _C.K<sub>i</sub> > ub_, or there are no more keys in the tree.
+
+### Updates on B<sup>+</sup>-Trees
+Insertion and deletion are more complicated than lookup, since it may be necessary to **split** a node that becomes too large as the result of an insertion, or to **coalesce** nodes if a node becomes too small (fewer than ⌈n∕2⌉ pointers).
+Furthermore, when a node is split or a pair of nodes is combined, we must ensure that balance is preserved.
+
+- **Insertion**: Using the same technique as for lookup from the _find()_ function (Figure
+14.11), we first find the leaf node in which the search-key value would appear. We
+then insert an entry (i.e., a search-key value and record pointer pair) in the leaf
+node, positioning it such that the search keys are still in order.
+
+- **Deletion**: Using the same technique as for lookup, we find the leaf node containing
+the entry to be deleted by performing a lookup on the search-key value of the
+deleted record; we then remove the entry from the leaf node.
+All entries in the leaf node that are to the right of the deleted entry are shifted left
+by one position, so that there are no gaps in the entries after the entry is deleted.
+
+#### Insertion
+Consider an example where we a record is inserted in the _instructor_ relation with the _name_ value being Adams. An entry for "Adams" would then need to be inserted into the B+-tree of Figure 14.9. By using the _find()_ procedure, we can see that "Adams" should be inserted in the leaf node containing "Brandt", "Califieri", and "Crick". However, there is no room in this node for the insertion. Thus, the node must be split. In general, we take the _n_ search-key values (the _n − 1_ values in the leaf node plus the value being inserted), and put the first _⌈n ∕ 2⌉_ in the existing node and the remaining values in a newly created node.
