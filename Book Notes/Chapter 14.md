@@ -147,4 +147,42 @@ Note how the final pointer, _P<sub>n</sub>_ is not included; this pointer plays 
 The **nonleaf nodes** of the B+-tree for a multilevel, sparse index on the leaf nodes.
 The structure of nonleaf nodes is the same as leaf nodes, except that all pointers point to other nodes. A nonleaf node holds up to _n_ pointers and must hold at least _ceil(n / 2)_ pointers.
 
+Consider a node containing _m_ pointers such that _m <= n_. For _i = 2, 3, ..., m - 1_, the pointer _P<sub>i</sub>_ points to a subtree contains search-key values less that _K<sub>i</sub>_ and greater than or equal to _K<sub>i-1</sub>_. Pointer _P<sub>m</sub>_ points to the part of the subtree that contains those key values greater than or equal to _K<sub>m-1</sub>_, and pointer _P<sub>1</sub>_ points to the part of the subtree with search-key values less than _K<sub>1</sub>_.
 
+Root nodes can hold fewer than _ceil(n / 2)_ pointers, but must contain at least two, unless there is only one node in the tree.
+
+Figure 14.9 shows a complete B+-tree for the _instructor_ file with _n = 4_.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-81.png)
+
+Figure 14.10 shows a B+-tree for the _instructor_ file with _n = 6_, note how the height of this tree is shorter than the previous.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-82.png)
+
+### Queries on B<sup>+</sup>-Trees
+Suppose that we wish to find a record with a given value _v_ for the search key. Figure 14.11 presents pseudocode for a
+function _find(v)_ to carry out this task, assuming there are no duplicates.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-83.png)
+
+Starting with the root as the current node, the function repeats the
+following steps until a leaf node is reached. First, the current node is examined, looking
+for the smallest _i_ such that search-key value _K<sub>i</sub>_ is greater than or equal to _v_. Suppose
+such a value is found; then, if _K<sub>i</sub>_ is equal to _v_, the current node is set to the node pointed
+to by _P<sub>i+1</sub>_, otherwise _K<sub>i</sub> > v_, and the current node is set to the node pointed to by _P<sub>i</sub>_. 
+If no such value _K<sub>i</sub>_ is found, then _v > K<sub>m−1</sub>_, where _P<sub>m</sub>_ is the last nonnull pointer in the
+node. In this case the current node is set to that pointed to by _P<sub>m</sub>_. The above procedure
+is repeated, traversing down the tree until a leaf node is reached.
+
+B+-trees can also be used to find all records with search key values in a specified
+range [_lb, ub_], such queries are called **range queries**.
+To execute such queries, we can create a procedure _findRange (lb, ub)_, shown in
+Figure 14.12.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-84.png)
+
+The procedure does the following: it first traverses to a leaf in a manner
+similar to _find(lb)_; the leaf may or may not actually contain value _lb_. It then steps
+through records in that and subsequent leaf nodes collecting pointers to all records
+with key values _C.K<sub>i</sub>_ such that _lb ≤ C.K<sub>i</sub> ≤ ub_ into a set _resultSet_. The function stops when
+_C.K<sub>i</sub> > ub_, or there are no more keys in the tree.
