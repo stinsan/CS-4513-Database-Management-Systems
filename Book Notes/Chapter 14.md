@@ -292,3 +292,4 @@ For example, to define an index name _dept_index_ on the _instructor_ relation w
 To declare that an attribute or list of attributes is a candidate key, we can use the
 syntax **create unique index** in place of **create index** above.
 
+### The rest of Chapter 14 was not covered in lecture.
