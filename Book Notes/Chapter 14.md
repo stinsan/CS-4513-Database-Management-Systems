@@ -272,5 +272,3 @@ With overflow chaining, given a search-key _k_, the lookup algorithm must check 
 Hash indices with a fixed number of buckets is called **static hashing**. One of the problems with this is that we need to know how many records are being stored in the index. If a large number of records are added, resulting in far more records than buckets, lookups would have to search through a large number of records stored in a single bucket and would be inefficient.
 
 To combat the problem that comes with static hashing, the hash index can be rebuilt with an increased number of buckets. This is called **dynamic hashing**.
-
-Static and dynamic hashing are discussed further in chapter 24.
