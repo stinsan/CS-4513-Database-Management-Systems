@@ -246,3 +246,31 @@ The following are an example of a few consecutive deletions starting from the B+
 This section was not covered in lecture.
 
 ## 14.5 | Hash Indices
+
+A **bucket** is a unit of storage that can store one or more records.
+For in-memory hash indices, a bucket could be a linked list of idnex entries or reocrds. For disk-based indices, a bucket would be a linked list of disk blocks. 
+
+In a **hash file organization**, buckets store the actual records instead of record pointers.
+With in-memory hash indices, buckets are simply an array of pointers with the _i_ th bucket at offset _i_. Each pointer stores the head of a linked list containing the entries in that bucket.
+
+To insert a search-key _K<sub>i</sub>_, we compute _h(K<sub>i</sub>)_, whihc gives the address of the bucket for that record. Then, we add the index entry for the record to the list at offset _i_.
+
+To handle the case of multiple records in a single bucket, we use **overflow chaining**.
+
+If two search keys have thge same hash value, we must check the search-key value of every record in the bucket to verify that the record is one that we want.
+
+Unlike B+-trees, hash indices do not support range queries. That is, queries that want ot retrieve all search key values _v_ such that _l ≤ v ≤ u_ cannot be efficiently answered using a hash index.
+
+Deletion is equally straightforward. Say the record you want to be deleted is _K<sub>i</sub>_, we compute _h(K<sub>i</sub>)_, then search the corresponding bucket for that record and delete the record from the bucket.
+
+In a disk-based hash index, when a record is inserted and the bucket does not have enough space, a **bucket overflow** is said to occur. We handle bucket overflow by using **overflow buckets**. If a record must be inserted to a bucket _b_, but _b_ is already full, the system provides an overflow bucket for _b_ andd inserts the record there. If an overflow bucket is also full, the system provides yet another, and so on. All overflow buckets of a given bucket are chained together with a linked list structure.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-91.png)
+
+With overflow chaining, given a search-key _k_, the lookup algorithm must check the bucket _h(k)_ and all of its overflow buckets.
+
+Hash indices with a fixed number of buckets is called **static hashing**. One of the problems with this is that we need to know how many records are being stored in the index. If a large number of records are added, resulting in far more records than buckets, lookups would have to search through a large number of records stored in a single bucket and would be inefficient.
+
+To combat the problem that comes with static hashing, the hash index can be rebuilt with an increased number of buckets. This is called **dynamic hashing**.
+
+Static and dynamic hashing are discussed further in chapter 24.
