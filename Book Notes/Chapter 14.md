@@ -222,3 +222,22 @@ In the previous example, only the leaf node was split. Let's see an example wher
 shown in Figure 14.14.
 
 ![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-87.png)
+
+The leaf node that "Lamport" is supposed to be inserted into (the node with "Gold", "Katz", and "Kim") is already full, and neesd to split. The new right-side node resulting from the split then cointains "Kim" and "Lamport". An additional entry (Kim, _n1_) must then be added to the parent node, where _n1_ is a pointer to the new node. However, there is no remaining space in the parent node, so it also must be split.
+
+To split the parent node, it is first conceptually expanded temporarily, the entry is added, then the overfull node is then split immediately. The child pointers are then divided among the original and newly created nodes. In our example, the original node is left with the first three pointers and the new node gets the remaining two.
+
+The search-key values are treated differently, though. The search key values that lie between the pointers moved to the right node (in our example, "Kim") are moved along with the pointers, while those that lie between the pointers that stay on the left (in our example, "Califieri and "Einstein") remain undisturbed. The search key value that lies between the pointers that stay on the left, and the pointers that move to the right is treated differently. For this case, an entry will be added to the parent node (in our example, "Gold").
+
+#### Deletion
+If the deletion of the value _K<sub>i</sub>_ in a non-leaf node casuses a node to be too small, move the smallest key of the sub-tree pointed to by the pointer _P<sub>i+1</sub>_ to the place of _K<sub>i</sub>.
+
+If _K<sub>i</sub>_ is a leaf node, then redistribute the search key values over sibling leaf nodes and adjust the pointers along the path from leaf to root. This, in turn, may cause redistribution of search keys in nonleaf nodes.
+
+The following are an example of a few consecutive deletions starting from the B+-tree in Figure 14.14.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-88.png)
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-89.png)
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-90.png)
