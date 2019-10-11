@@ -142,4 +142,33 @@ A **multitable clustering file organization** is a file organization, like the o
 
 The **cluster key** is the attributes that define which records are stored together. In Figure 13.11, the cluster key is _dept_name_.
 
+## 13.4 | Data-Dictionary Storage
+
+**Metadata** is "data about data".
+
+Relational schemas and other metadata about relations are stored in a structure called the **data dictionary** or **system catalog**. 
+The information stored in these include:
+- Names of the relations
+- Names of the attributes of each relation
+- Domains and lengths of attributes
+- Names of views defined on the database, and definitions of those views.
+- Integrity constraints (e.g. key constraints)
+
+Additionally, they keep the following data on users of the system:
+- Names of users, default schemas of users, and passwords or other information to authenticate users.
+- Information about authorizations for each user.
+
+The data dictionary may also note the storage organization (heap, sequential, hash, etc.) of relations, and the location where each relation is stored:
+- If relations are stored in operating system files, the dictionary would note the names of the file(s) containing each relation.
+- If the databases stores all relations in a single file, the dictionary may note the blocks containing records of each relation in a data structure (e.g. a linked list).
+
+Index information (from Chapter 14) are also stored:
+- Name of the index
+- Name of the relation being indexed
+- Attributes on which the index is defined
+- Type of index formed
+
+Often times, metadata is stored in the database itself as a "miniature database". Figure 13.12 shows a schema diagram for a toy data dictionary.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-96.png)
 ## The rest of Chapter 13 was not covered in lecture.
