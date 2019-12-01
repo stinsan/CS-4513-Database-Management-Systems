@@ -19,4 +19,5 @@ denote that tuple _t_ is in relation _r_.
 
 Suppose that we want only the _ID_ attribute, rather than all attributes of the instructor relation.
 To express this request, we use: <br>
-∃ _t_ ∈ _r_ (_Q(t)_) <br>
+∃ _t_ ∈ _r_ (_Q(t)_), <br>
+which means "the exists a tuple _t_ in relation _r_ such that predicate _Q(t)_ is true."
