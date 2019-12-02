@@ -16,8 +16,39 @@ denote that tuple _t_ is in relation _r_.
 - Find the _ID_, _name_, _dept_name_, _salary_ for instructors whose salary is greater than $80,000: <br>
 {_t_ |  _t_ ∈ _instructor_ ∧ _t[salary]_ > 80000}.
 
-
 Suppose that we want only the _ID_ attribute, rather than all attributes of the instructor relation.
 To express this request, we use: <br>
 ∃ _t_ ∈ _r_ (_Q(t)_), <br>
 which means "the exists a tuple _t_ in relation _r_ such that predicate _Q(t)_ is true."
+
+- We can write the query “Find the instructor ID for each instructor with a salary greater than $80,000” as: <br>
+{_t_ | ∃ _s_ ∈ _instructor_ (_t[ID]_ = _s[ID]_ ∧ _s[salary]_ > 80000)} 
+
+- Consider the query “Find the names of all instructors whose department is in the Watson building.” We write the query as follows:<br>
+{_t_ | ∃ _s_ ∈ _instructor_ (_t[name]_ = _s[name]_ ∧ ∃ _u_ ∈ _department_ (_u[dept name]_ = _s[dept name]_ ∧ _u[building]_ = “Watson”))}
+
+- To find the set of all courses taught in the Fall 2017 semester, the Spring 2018
+semester, or both, we used the union operation in the relational algebra. In the tuple
+relational calculus, we shall need two “there exists” clauses, connected by or (∨): <br>
+{_t_ | ∃ _s_ ∈ _section_ (_t[course id]_ = _s[course id]_)
+∧ _s[semester]_ = “Fall” ∧ _s[year]_ = 2017)
+∨ <br>
+∃ _u_ ∈ section (_u[course id]_ = _t[course id]_)
+∧ _u[semester]_ = “Spring” ∧ _u[year]_ = 2018)}
+
+- If we now want only those course id values for courses that are offered in both the
+Fall 2017 and Spring 2018 semesters, all we need to do is to change the or (∨) to and
+(∧) in the preceding expression: <br>
+{_t_ | ∃ _s_ ∈ _section_ (_t[course id]_ = _s[course id]_)
+∧ _s[semester]_ = “Fall” ∧ _s[year]_ = 2017)
+∧ <br>
+∃ _u_ ∈ section (_u[course id]_ = _t[course id]_)
+∧ _u[semester]_ = “Spring” ∧ _u[year]_ = 2018)}
+
+- Now consider the query “Find all the courses taught in the Fall 2017 semester but
+not in Spring 2018 semester.” For this, we must use the not (¬) symbol: <br>
+{_t_ | ∃ _s_ ∈ _section_ (_t[course id]_ = _s[course id]_)
+∧ _s[semester]_ = “Fall” ∧ _s[year]_ = 2017)
+∧ <br>
+¬∃ _u_ ∈ section (_u[course id]_ = _t[course id]_)
+∧ _u[semester]_ = “Spring” ∧ _u[year]_ = 2018)}
