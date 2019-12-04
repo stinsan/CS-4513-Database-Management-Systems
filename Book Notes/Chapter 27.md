@@ -18,7 +18,7 @@ denote that tuple _t_ is in relation _r_.
 
 Suppose that we want only the _ID_ attribute, rather than all attributes of the instructor relation.
 To express this request, we use: <br>
-**∃ _t_ ∈ _r_ (_Q(t)_)**, <br>
+∃ _t_ ∈ _r_ (_Q(t)_), <br>
 which means "the exists a tuple _t_ in relation _r_ such that predicate _Q(t)_ is true."
 
 - We can write the query “Find the instructor ID for each instructor with a salary greater than $80,000” as: <br>
@@ -64,3 +64,30 @@ In English, this means "“The set of all students (i.e., (_ID_) tuples _t_)
 such that, for all tuples _u_ in the course relation, if the value of _u_ on attribute _dept_name_
 is _’Biology’_, then there exists a tuple in the _takes_ relation that includes the student _ID_
 and the _course_id_.
+
+## 27.1.2 | Formal Definition
+
+A tuple-relational-calculus expression is of
+the form: <br>
+{t|P(t)} <br>
+where P is a **formula**.
+
+A tuple variable is said to be a **free variable** unless it is quantified by a ∃ or ∀. Thus, in: <br>
+_t_ ∈ _instructor_ ∧ ∃ _s_ ∈ _department_(_t[dept name]_ = _s[dept name]_) <br>
+_t_ is a free variable. Tuple variable _s_ is said to be a **bound variable**.
+
+A formula is built up out of **atoms**. An atom has one of the
+following forms:
+
+- _s_ ∈ _r_, where _s_ is a tuple variable and _r_ is a relation.
+- _s[x]_ Θ _u[y]_, where _s_ and _u_ are tuple variables, _x_ is an attribute on which _s_ is defined,
+_y_ is an attribute on which _u_ is defined, and Θ is a comparison operator (<, ≤, =,
+≠, >, ≥).
+- _s[x]_ Θ _c_, where _s_ is a tuple variable, _x_ is an attribute on which _s_ is defined, Θ is a
+comparison operator, and _c_ is a constant in the domain of attribute _x_.
+
+We build up formulae from atoms by using the following rules:
+
+- An atom is a formula.
+- If _P1_ is a formula, then so are ¬_P1_ and (_P1_).
+- If _P1_ and _P2_ are formulae, then so are _P1_ ∨ _P2_, _P1_ ∧ _P2_, and _P1_ ⇒ _P2_.
