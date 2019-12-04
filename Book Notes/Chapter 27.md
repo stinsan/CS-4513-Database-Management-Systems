@@ -127,6 +127,16 @@ An expression in the domain relational calculus is of the form <br>
 <_x1, x2, ..., xn_> | P(_x1, x2, ..,, xn_)} <br>
 where _x1, x2, ..., xn_ represent domain variables and _P_ represents a formula composed of
 atoms.
-
+i love justin
 An atom in the domain relational calculus has one of the following forms:
--nhnhhnggngngt
+- <_x1, x2, ..., xn_> ∈ _r_, where _r_ is a relation on n attributes and _x1, x2, ..., xn_ are
+domain variables or domain constants.
+- _x_ Θ _y_, where _x_ and _y_ are domain variables and Θ is a comparison operator (<, ≤,
+=, ≠, >, ≥).
+- _x_ Θ _c_, where _x_ is a domain variable, Θ is a comparison operator, and _c_ is a constant
+in the domain of the attribute for which _x_ is a domain variable.
+
+Formulae are built from atoms in the domain relational calculus in the same way as in the tuple relational calculus.
+
+### 27.2.2 | Example Queries
+                      
