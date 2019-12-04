@@ -65,7 +65,7 @@ such that, for all tuples _u_ in the course relation, if the value of _u_ on att
 is _’Biology’_, then there exists a tuple in the _takes_ relation that includes the student _ID_
 and the _course_id_.
 
-## 27.1.2 | Formal Definition
+### 27.1.2 | Formal Definition
 
 A tuple-relational-calculus expression is of
 the form: <br>
@@ -91,3 +91,42 @@ We build up formulae from atoms by using the following rules:
 - An atom is a formula.
 - If _P1_ is a formula, then so are ¬_P1_ and (_P1_).
 - If _P1_ and _P2_ are formulae, then so are _P1_ ∨ _P2_, _P1_ ∧ _P2_, and _P1_ ⇒ _P2_.
+- If _P1(s)_ is a formula containing a free tuple variable _s_, and _r_ is a relation, then
+∃ _s_ ∈ _r_ (_P1(s)_) and ∀ _s_ ∈ _r_ (_P1(s)_) <br>
+are also formulae.
+
+### 27.1.3 | Safety of Expressions
+
+We must prevent the situation where a tuple-relational-calculus expression may
+generate an infinite relation.
+
+Suppose that we write the expression {_t_ | ¬(_t_ ∈ _instructor_)}. There are infinitely many tuples that are not in _instructor_, and we wish to safeguard against these expressions.
+
+The **domain** of a tuple relational formula _P_, denoted dom(_P_), is the set of all values referenced by _P_, as well as values that appear in a tuple of a relation mentioned in P.
+
+- dom(_t_ ∈ _instructor_ ∧ _t[salary]_ > 80000) is the set containing 80000 as well as the set of all values appearing in any attribute of any tuple in the _instructor_ relation.
+
+- dom(¬ (_t_ ∈ _instructor_)) is also the set of all values appearing in _instructor_, since the relation _instructor_ is mentioned in
+the expression.
+
+An expression {_t_ | _P(t)_} is **safe** if all values that appear in the result
+are values from dom(_P_).
+
+- The expression {_t_ |¬ (_t_ ∈ _instructor_)} is not safe. It is true that dom(¬ (_t_ ∈ _instructor_)) is the set of all values appearing in _instructor_. However, it is possible to have a tuple _t_ not in _instructor_ that contains values that do not appear
+in _instructor_.
+
+## 27.2 | The Domain Relational Calculus
+
+A second form of relational calculus, called **domain relational calculus**, uses domain
+variables that take on values from an attributes domain, rather than values for an entire
+tuple
+
+### 27.2.1 | Formal Definition
+
+An expression in the domain relational calculus is of the form <br>
+<_x1, x2, ..., xn_> | P(_x1, x2, ..,, xn_)} <br>
+where _x1, x2, ..., xn_ represent domain variables and _P_ represents a formula composed of
+atoms.
+
+An atom in the domain relational calculus has one of the following forms:
+-nhnhhnggngngt
