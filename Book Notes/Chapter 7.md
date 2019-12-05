@@ -195,3 +195,23 @@ and β ⊆ R, at least one of the following holds:
 2. α is a superkey for _R_.
 3. Each attribute _A_ in β − α is contained in a candidate key for _R_.
 
+Again consider the schema for the _dept_advisor_ relation, which has the
+following functional dependencies: <br>
+_i_ID_ → _dept_name_ <br>
+_s_ID_, _dept_name_ → _i_ID_
+
+Here, α = _i_ID_, β = _dept_name_, and β − α = _dept_name_. Since the functional dependency _s_ID_, _dept_name → _i_ID_ holds on 
+_dept_advisor_, the attribute _dept_name_ is contained in a candidate key and, therefore, _dept_advisor_ is in 3NF.
+
+## 7.4 | Functional Dependency Theory
+
+### 7.4.1 | Closure of a Set of Functional Dependencies
+A functional dependency _f_ on _R_ is **logically implied** by a set of functional dependencies _F_ on _R_ if every instance of a relation _r_(_R_) that satisfies _F_ also satisfies _f_. 
+
+Suppose we are given a relation schema _r_(_A, B, C, G, H, I_) and the set of functional dependencies:<br>
+_A_ → _B_ <br>
+_A_ → _C_ <br>
+_CG_ → _H_ <br>
+_CG_ → _I_ <br>
+_B_ → _H_ <br>.
+The functional dependency A → H is logically implied because _A_ → _B_ then _B_ → _H_.
