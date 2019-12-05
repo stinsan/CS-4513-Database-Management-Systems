@@ -176,5 +176,22 @@ _s_ID_, _dept_name_ → _i_ID_
 We see that _dept_advisor_ is not in BCNF because _i_ID_ is not a superkey. Following our rule for BCNF
 decomposition, we get: <br>
 (_s_ID, i_ID_) <br>
-(_i_ID, dept_name_)
+(_i_ID, dept_name_), <br>
+which are both in BCNF.
+
+Note, however, that in our BCNF design, there is no schema that includes all the
+attributes appearing in the functional dependency _s_ID, dept_name_ → _i_ID_. Because of this, we say that our design is not **dependency preserving**.
+
+### 7.3.2 | Third Normal Form
+Because dependency preservation is usually considered desirable, we consider another normal form, weaker than
+BCNF, that will allow us to preserve dependencies. That normal form is called the third
+normal form.
+
+A relation schema _R_ is in **third normal form** (3NF) with respect to a set _F_ of functional
+dependencies if, for all functional dependencies in _F+_ of the form α → β, where α ⊆ R
+and β ⊆ R, at least one of the following holds:
+
+1. α → β is a trivial functional dependency
+2. α is a superkey for _R_.
+3. Each attribute _A_ in β − α is contained in a candidate key for _R_.
 
