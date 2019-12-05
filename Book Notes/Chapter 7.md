@@ -26,6 +26,7 @@ To avoid the problem that we have with the _in_dep_ relation, we must decompose 
 Not all decompositions of schemas are helpful. Consider a decomposition of the schema _employee_ (_ID, name, street, city, salary_) into _employee1_ (_ID, name_) and _employee2_ (_name, street, city, salary_). Let us assume two employees, both named Kim have tuples in the original _employee_ relation:<br>
 (57766, Kim, Main, Perryridge, 75000)<br>
 (98776, Kim, North, Hampton, 67000)<br>.
+
 Figure 7.3 shows these tuples, the resulting tuples using the schemas resulting from
 the decomposition, and the result if we attempted to regenerate the original tuples using a natural join.
 
