@@ -127,7 +127,7 @@ An expression in the domain relational calculus is of the form <br>
 <_x1, x2, ..., xn_> | P(_x1, x2, ..,, xn_)} <br>
 where _x1, x2, ..., xn_ represent domain variables and _P_ represents a formula composed of
 atoms.
-i love justin
+
 An atom in the domain relational calculus has one of the following forms:
 - <_x1, x2, ..., xn_> ∈ _r_, where _r_ is a relation on n attributes and _x1, x2, ..., xn_ are
 domain variables or domain constants.
@@ -139,4 +139,20 @@ in the domain of the attribute for which _x_ is a domain variable.
 Formulae are built from atoms in the domain relational calculus in the same way as in the tuple relational calculus.
 
 ### 27.2.2 | Example Queries
-                      
+- Find the instructor _ID_, _name_, _dept_name_, and _salary_ for instructors whose _salary_ is
+greater than $80,000: <br>
+**{ < _i, n, d, s_ > | < _i, n, d, s_ > ∈ _instructor_ ∧ _s_ > 80000}**.
+
+- Find all instructor ID for instructors whose salary is greater than $80,000: <br>
+**{ < _i_ > | ∃ _n, d, s_ (< _i, n, d, s_ > ∈ _instructor_ ∧ _s_ > 80000)}**.
+
+- Find the names of all instructors in the Physics department together with the
+course id of all courses they teach: <br>
+**{ < _n, c_ > | ∃ _i, a, se, y_ (< _i, c, a, se, y_ > ∈ _teaches_ ∧ ∃ _d, s_ (< _i, n, d, s_ > ∈ _instructor_ ∧ _d_ = “Physics”))}**.
+
+-  Find the set of all courses taught in the Fall 2017 semester, the Spring 2018
+semester, or both: <br>
+**{ < _c_ > | ∃ _a, s, y, b, r, t_ (< _c, a, s, y, b, r, t_ > ∈ _section_
+∧ _s_ = “Fall” ∧ _y_ = “2017”) <br>
+∨ ∃ _a, s, y, b, r, t_ (< _c, a, s, y, b, r, t_ > ∈ _section_
+∧ _s_ = “Spring” ∧ _y_ = “2018”)}**.
