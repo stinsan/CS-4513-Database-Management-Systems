@@ -156,3 +156,24 @@ semester, or both: <br>
 ∧ _s_ = “Fall” ∧ _y_ = “2017”) <br>
 ∨ ∃ _a, s, y, b, r, t_ (< _c, a, s, y, b, r, t_ > ∈ _section_
 ∧ _s_ = “Spring” ∧ _y_ = “2018”)}**.
+
+- Find all students who have taken all courses offered in the Biology department: <br>
+**{ < _i_ > | ∃ _n, d, tc_ (< _i, n, d, tc_ > ∈ _student_) ∧ <br>
+∀ _ci, ti, dn, cr_ (< _ci, ti, dn, cr_ > ∈ _course_ ∧ _dn_ = “Biology” ⇒  ∃ _si, se, y, g_ (< _i, ci, si, se, y, g_ > ∈ _takes_ ))}**
+
+### 27.2.3 | Safety of Expressions
+
+An expression such as { < _i, n, d, s_ > | ¬(< _i, n, d, s_ > ∈ _instructor_)}
+is unsafe, because it allows values in the result that are not in the domain of the expression.
+
+For the domain relational calculus, we must be concerned also about the form of
+formulae within “there exists” and “for all” clauses. 
+
+We say that an expression { < _x1, x2, ..., xn_ > | _P_ (_x1, x2, ..., xn_)} is safe if all of the following hold:
+1. All values that appear in tuples of the expression are values from dom(_P_).
+2. For every “there exists” subformula of the form ∃ _x_ (_P1(x)_), the subformula is
+true if and only if there is a value _x_ in dom(_P1_) such that _P1(x)_ is true.
+3. For every “for all” subformula of the form ∀ _x_ (_P1(x)_), the subformula is true if
+and only if _P1(x)_ is true for all values _x_ from dom(_P1_).
+
+### Subsequent sections were not covered in lecture.
