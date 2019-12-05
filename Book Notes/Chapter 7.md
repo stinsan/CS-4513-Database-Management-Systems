@@ -135,3 +135,46 @@ _department_ (_dept_name, building, budget_)
 The instersection _instructor_ ∩ _department_ = _dept_name_, and dept_name → _dept_name, building, budget_, thus the lossless-decomposition rule is satisfied.
 
 ## 7.3 | Normal Forms
+### 7.3.1 | Boyce-Codd Normal Form 
+One of the more desirable normal forms that we can obtain is **Boyce–Codd normal form**
+(BCNF). It eliminates all redundancy that can be discovered based on functional dependencies.
+
+#### Definition
+A relation schema _R_ is in BCNF with respect to a set _F_ of functional dependencies if,
+for all functional dependencies in _F+_, at least one of the following holds:
+1. α → β is a trivial functional dependency (i.e., β ⊆ α).
+2. α is a superkey for schema _R_.
+
+The schema _in_dep_ (_ID, name, salary, dept name, building, budget_) is not in BCNF because the functional dependency _dept_name_ → _budget_ holds on _in_dep_, but _dept_name_ is not a superkey (because a department may have a number of different instructors).
+
+The two schema resulting from the decomposition of _in_dep_ are in BCNF, however: <br>
+The _instructor_ schema is in BCNF because all of the nontrivial functional dependencies that hold, such as _ID_ → _name, dept name, salary_, have _ID_ on the left side, and _ID_ is a superkey.
+Similarly for the _department_ schema. All nontrivial functional dependencies that hold, such as _dept_name_ → _building, budget_ have a superkey (_dept_name_) on the left side.
+
+To decompose a schema into BCNF, first pick one nontrivial functional dependency α → β such that α is not a superkey for _R_. Next decompose _R_ into these two schemas:
+
+1. (α ∪ β)
+2. (R − (β − α))
+
+In the case of _in_dep_, α = _dept_name_, β = {_building, budget_}, and _in_dep_ is replaced by:
+
+1. (α ∪ β) = (_dept_name_, _building_, _budget_)
+2. (_R_ − (β − α)) = (_ID, name, _dept_name_, salary_)
+
+#### BCNF and Dependency Preservation
+Testing the entire database for consistency constraints (e.g. functional dependencies) everytime it is updated is costly. If testing a functional dependency can be done by considering just one relation, then the cost of testing this constraint is low. In some
+cases, decomposition into BCNF can prevent efficient testing of certain functional dependencies.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-102.png)
+
+Take the above E-R diagram which specifies the constraint that “a student may have more than one advisor, but at most one corresponding 
+to a given department.” The schema derived from the _dept_advisor_ relationship set is _dept_advisor_ (_s_ID_, _i_ID_, _dept_name_). 
+Suppose we have the additional constraint that “an instructor can act as advisor for only a single department.” Then, the following functional dependencies hold on _dept_advisor_: <br>
+_i_ID_ → _dept_name_ <br>
+_s_ID_, _dept_name_ → _i_ID_
+
+We see that _dept_advisor_ is not in BCNF because _i_ID_ is not a superkey. Following our rule for BCNF
+decomposition, we get: <br>
+(_s_ID, i_ID_) <br>
+(_i_ID, dept_name_)
+
