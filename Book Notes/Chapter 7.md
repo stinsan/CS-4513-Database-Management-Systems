@@ -213,5 +213,26 @@ _A_ → _B_ <br>
 _A_ → _C_ <br>
 _CG_ → _H_ <br>
 _CG_ → _I_ <br>
-_B_ → _H_ <br>.
+_B_ → _H_. <br>
 The functional dependency A → H is logically implied because _A_ → _B_ then _B_ → _H_.
+
+The **closure** of F, denoted by F+, is the set of all functional dependencies logically implied by F.
+
+We can use **Armstrong's axioms** to find logically implied functional dependencies. By applying these rules repeatedly, we can find all of F+, given F:
+
+1. **Reflexivity rule**.  If α is a set of attributes and β ⊆ α, then α → β holds.
+2. **Augmentation rule**. If α → β holds and γ is a set of attributes, then γα → γβ holds.
+3. **Transitivity rule**. If α → β holds and β → γ holds, then α → γ holds.
+
+To simplify matters further, we list additional rules:
+
+4. **Union rule**. If α → β holds and α → γ holds, then α → βγ holds.
+5. **Decomposition rule**. If α → βγ holds, then α → β holds and α → γ holds.
+6. **Pseudotransitivity rule**. If α → β holds and γβ → δ holds, then αγ → δ holds.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-103.png)
+
+### 7.4.2 | Closure of Attribute Sets
+
+An attribute _B_ is **functionally determined** by α if α → _B_.
+ 
