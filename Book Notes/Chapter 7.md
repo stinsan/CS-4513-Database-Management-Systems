@@ -235,4 +235,32 @@ To simplify matters further, we list additional rules:
 ### 7.4.2 | Closure of Attribute Sets
 
 An attribute _B_ is **functionally determined** by α if α → _B_.
+
+We call the set of all attributes functionally determined
+by α under a set _F_ of functional dependencies the closure of α under _F_; we denote it by α+. Below is an algorithm to compute α+.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-104.png)
+
+To illustrate how the algorithm works, we shall use it to compute (_AG_)+ with functional dependencies <br>
+_A_ → _B_ <br>
+_A_ → _C_ <br>
+_CG_ → _H_ <br>
+_CG_ → _I_ <br>
+_B_ → _H_. <br>
+
+1. We start with _result_ = _AG_.
+2. _A_ → _B_ causes us to include _B_ in _result_. To see this fact, we observe that _A_ → _B_ is
+in _F_. _A_ ⊆ _result_ (which is _AG_), so _result_ := _result_ ∪ _B_.
+3. _A_ → _C_ causes _result_ to become _ABCG_.
+4. _CG_ → _H_ causes _result_ to become _ABCGH_.
+5. _CG_ → _I_ causes _result_ to become _ABCGHI_.
+
+There are several uses of the attribute closure algorithm:
+- If α+ contains all attributes in _R_, then α is a superkey.
+- We can check if a functional dependency α → β holds (or, in other words, is in
+F+), by checking if β ⊆ α+. That is, we compute α+, and
+then check if it contains β.
+
+### 7.4.3 | Canonical Cover
+
  
