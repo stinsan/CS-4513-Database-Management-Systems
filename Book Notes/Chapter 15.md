@@ -31,3 +31,11 @@ Additionally, there are several algorithms to execute each relational algebra op
 
 Annotations may state the algorithm to be used for a specific operation or the particular index or indices to use. A relational-algebra operation annotated with instructions on how to evaluate it is called an **evaluation primitive**. A sequence of
 primitive operations that can be used to evaluate a query is a **query-execution plan**.
+
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-108.png)
+
+The different ways that a query can be written can have different costs. **Query optimization** is where the system chooses the best execution plan.
+
+### Section 15.2 was not covered in lecture.
+
+## 15.3 | Selection Operation
