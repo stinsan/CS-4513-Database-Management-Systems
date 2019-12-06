@@ -26,3 +26,8 @@ where salary < 75000;
 This can be translated into either relational-algebra expression: <br>
 σ<sub>salary<75000</sub> (Π<sub>salary</sub> (instructor)) <br>
 Π<sub>salary</sub> (σ<sub>salary<75000</sub> (instructor))
+
+Additionally, there are several algorithms to execute each relational algebra operation. For example, we can search for every tuple in instructor with a salary less than 75000, or we can use an index search if it's available.
+
+Annotations may state the algorithm to be used for a specific operation or the particular index or indices to use. A relational-algebra operation annotated with instructions on how to evaluate it is called an **evaluation primitive**. A sequence of
+primitive operations that can be used to evaluate a query is a **query-execution plan**.
