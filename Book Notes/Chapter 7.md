@@ -261,6 +261,47 @@ There are several uses of the attribute closure algorithm:
 F+), by checking if β ⊆ α+. That is, we compute α+, and
 then check if it contains β.
 
-### 7.4.3 | Canonical Cover
+## 7.5 | Algorithms for Decomposition Using Functional Dependencies
 
+### 7.5.1 | BCNF Decomposition
+
+#### Testing for BCNF
+- To check if a nontrivial dependency α → β causes a violation of BCNF, compute
+α+, and verify that it includes all attributes of _R_; that is, it is a superkey for _R_.
+
+- It suffices to check only the dependencies in the given set F for violation of BCNF, rather than check all dependencies in F+.
+
+#### BCNF Decomposition Algorithm
+![](https://github.com/stinsan/CS-4513-Database-Management-Systems/blob/master/Screenshots/databases-105.png)
  
+If R is not in BCNF, we can decompose R into a collection of BCNF schemas R1, R2, …, Rn by the above algorithm.
+
+As a example of the use of the BCNF decomposition algorithm, suppose we
+have a database design using the class relation, whose schema is as shown below: <br>
+_class_ (_course_id, title, dept_name, credits, sec_id, semester, year, building,
+room_number, capacity, time slot_id_).
+
+The set of functional dependencies that we need to hold on this schema are:<br>
+_course_id_ → _title, dept_name, credits_ <br>
+_building, room_number_ → _capacity_ <br>
+_course_id, sec_id, semester, year_ → _building, room_number, time_slot_id_ 
+
+A candidate key for this schema is {_course_id, sec_id, semester, year_}.
+
+We can see that _class_ is not in BCNF because of the functional dependency _course_id_ → _title, dept_name, credits_;
+_course_id_ is not a superkey.
+
+Because of this, we replace class with two relations with the following schemas: <br>
+_course_ (_course_id, title, dept_name, credits_) <br>
+_class-1_ (_course_id, sec_id, semester, year, building, room_number, capacity, time_slot_id_).
+
+We can see that _course_ is in BCNF because the only functional dependency on it is _course_id_ → _title, dept_name, credits_ and _course_id_ is a superkey.
+
+Now look at _class-1_. This is not in BCNF because of the functional dependency _building, room_number_ → _capacity_; (_building, room_number_) is not a superkey.
+
+Thus, we decompose _class-1_ into the two schema: <br>
+_classroom_ (_building, room_number, capacity_) <br>
+_section_ (_course_id, sec_id, semester, year, building, room_number, time_slot_id_), <br>
+which are both in BCNF.
+
+### This is where the lectures diverge from the book.
