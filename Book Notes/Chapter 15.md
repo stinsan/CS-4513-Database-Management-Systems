@@ -57,4 +57,11 @@ Let _r_ and _s_ be relations we want to perform a Cartesian product on. Then, _r
 For a selection query of the relational algebra form σ<sub>_A=v_</sub> (_r_), the estimated number of records that will satisfy the selection is _n<sub>r</sub>_ / V(_A_, _r_), assuming that the values of _A_ are uniformly distributed.
 
 ## Join Size Estimation (from lecture notes)
-Let _R_ and _S_ be schemas we want to perform a join on. If _R_ ∩ _S_ = ∅, then the size of _r_ ⋈ _s_ is the same as the size of _r_ x _s_ (aka _n<sub>r</sub>_ *  _n<sub>s</sub>_ ).
+Let _R_ and _S_ be schemas we want to perform a join on.
+
+There are four cases:
+- If _R_ ∩ _S_ = ∅, then the size of _r_ ⋈ _s_ is the same as the size of _r_ x _s_ (aka _n<sub>r</sub>_ *  _n<sub>s</sub>_ ).
+- If  _R_ ∩ _S_ = _K1_ and K1 is a key for _R_, then a tuple from _s_ will join with at most one tuple from _r_. Thus, the size of _r_ ⋈ _s_ is less than or equal to the size of _s_.
+- If  _R_ ∩ _S_ = _K2_ and K2 is a key for _S_, then a tuple from _r_ will join with at most one tuple from _s_. Thus, the size of _r_ ⋈ _s_ is less than or equal to the size of _r_. 
+- If  _R_ ∩ _S_ = {_A_} and _A_ is a not a key for _R_ nor _S_, then all tuples in _r_ will join with ( _n<sub>r</sub>_ * _n<sub>s</sub>_) / V(_A, s_) tuples in _s_. Thus, estimated size of _r_ ⋈ _s_ is ( _n<sub>r</sub>_ * _n<sub>s</sub>_ ) / V(_A, s_).
+Similarly, the estimated size of _s_ ⋈ _r_ is ( _n<sub>r</sub>_ * _n<sub>s</sub>_) / V(_A, r_). This under the assumption that the values of _A_ are uniformly distributed.
