@@ -65,3 +65,11 @@ There are four cases:
 - If  _R_ ∩ _S_ = _K2_ and K2 is a key for _S_, then a tuple from _r_ will join with at most one tuple from _s_. Thus, the size of _r_ ⋈ _s_ is less than or equal to the size of _r_. 
 - If  _R_ ∩ _S_ = {_A_} and _A_ is a not a key for _R_ nor _S_, then all tuples in _r_ will join with ( _n<sub>r</sub>_ * _n<sub>s</sub>_) / V(_A, s_) tuples in _s_. Thus, estimated size of _r_ ⋈ _s_ is ( _n<sub>r</sub>_ * _n<sub>s</sub>_ ) / V(_A, s_).
 Similarly, the estimated size of _s_ ⋈ _r_ is ( _n<sub>r</sub>_ * _n<sub>s</sub>_) / V(_A, r_). Just choose the lower size. This under the assumption that the values of _A_ are uniformly distributed.
+
+## 15.5 | Join Operation
+
+For examples, we use the expression _student_ ⋈ _takes_ where <br>
+- Number of records of _student_: _n<sub>student</sub>_ = 5000.
+- Number of blocks of _student_: _b<sub>student</sub>_ = 100.
+- Number of records of _takes_: _n<sub>takes</sub>_ = 10000.
+- Number of blocks of _takes_: _b</sub>takes_ = 400.
