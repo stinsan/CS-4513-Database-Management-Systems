@@ -38,5 +38,23 @@ The different ways that a query can be written can have different costs. **Query
 
 ### Section 15.2 was not covered in lecture.
 
-## 15.3 | Selection Operation (from lecture notes)
+## Statistical Information for Cost Estimation (from lecture notes)
 
+To choose a query processing strategy, the DBMS may store the following information for each relation _r_:
+
+- _n<sub>r</sub>_: The number of tuples in _r_.
+- _b<sub>r</sub>_: The number of blocks containing tuples of _r_.
+- _I<sub>r</sub>_: The size of a tuple in _r_.
+- _f<sub>r</sub>_: The number of tuples of _r_ that fit into one block. Called the blocking factor.
+- V(_A_, _r_): number of distinct values that appear in _r_ for attribute A; same as the size of ∏<sub>_A_</sub> (_r_).
+
+If tuples of rare stored together physically in a file, then _f<sub>r</sub>_ = | n<sub>r</sub>_ / _f<sub>r</sub>_ |.
+
+## Cartesian Product Size Estimation (from lecture notes)
+Let _r_ and _s_ be relations we want to perform a Cartesian product on. Then, _r_ x _s_ has _n<sub>r</sub>_ *  _n<sub>s</sub>_  number of tuples with each tuple being (_I<sub>r</sub>_ + _I<sub>s</sub>_) bytes.
+
+## Selection Size Estimation (from lecture notes)
+For a selection query of the relational algebra form σ<sub>_A=v_</sub> (_r_), the estimated number of records that will satisfy the selection is _n<sub>r</sub>_ / V(_A_, _r_), assuming that the values of _A_ are uniformly distributed.
+
+## Join Size Estimation (from lecture notes)
+Let _R_ and _S_ be schemas we want to perform a join on. If _R_ ∩ _S_ = ∅, then the size of _r_ ⋈ _s_ is the same as the size of _r_ x _s_ (aka _n<sub>r</sub>_ *  _n<sub>s</sub>_ ).
