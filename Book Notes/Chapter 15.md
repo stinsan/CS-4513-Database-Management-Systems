@@ -38,4 +38,5 @@ The different ways that a query can be written can have different costs. **Query
 
 ### Section 15.2 was not covered in lecture.
 
-## 15.3 | Selection Operation
+## 15.3 | Selection Operation (from lecture notes)
+
